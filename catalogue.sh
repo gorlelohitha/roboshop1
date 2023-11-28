@@ -11,7 +11,7 @@ unzip /tmp/catalogue.zip
 cd /app
 npm install
 dnf install mongodb-org-shell -y
-mongo --host mongodb.devopsb17.online </app/schema/catalogue.js
+mongo --host mongo.devopsb17.online </app/schema/catalogue.js
 systemctl daemon-reload
 
 
