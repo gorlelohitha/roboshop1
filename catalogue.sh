@@ -1,9 +1,10 @@
 cp catalogue.service /etc/systemd/system/catalogue.service
 cp mongo.repo /ect/yum.repos.d/mongo.repo
-dnf module disable nodejs -y
-dnf module enable nodejs:18 -y
+curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+
 dnf install nodejs -y
 useradd roboshop
+
 mkdir /app
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip
 cd /app
