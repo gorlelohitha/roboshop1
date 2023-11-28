@@ -1,36 +1,36 @@
-echo ">>>>>>>>>>>>>>>> Create Catalogue Service <<<<<<<<<<<<"
-cp catalogue.service /etc/systemd/system/catalogue.service
-echo ">>>>>>>>>>>>>>>> Create Mongodb Repo <<<<<<<<<<<<"
-cp mongo.repo /etc/yum.repos.d/mongo.repo
-echo ">>>>>>>>>>>>>>>> Download nodejs <<<<<<<<<<<<"
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash
-echo ">>>>>>>>>>>>>>>> Install nodejs Repos <<<<<<<<<<<<"
-dnf install nodejs -y
-echo ">>>>>>>>>>>>>>>> Create Application user <<<<<<<<<<<<"
-useradd roboshop
-echo ">>>>>>>>>>>>>>>> Remove unwanted <<<<<<<<<<<<"
-rm -rf /app
-echo ">>>>>>>>>>>>>>>> Create Application directory <<<<<<<<<<<<"
-mkdir /app
-echo ">>>>>>>>>>>>>>>> download Application directory <<<<<<<<<<<<"
-curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip
-echo ">>>>>>>>>>>>>>>> Extract Application Content <<<<<<<<<<<<"
-cd /app
-unzip /tmp/catalogue.zip
-cd /app
+echo -e "\e[32m>>>>>>>>>>>>>>>> Create Catalogue Service <<<<<<<<<<<<\e[om"
+cp catalogue.service /etc/systemd/system/catalogue.service >tmp/roboshop.log
+echo-e "\e[32m>>>>>>>>>>>>>>>> Create Mongodb Repo <<<<<<<<<<<<\e[om"
+cp mongo.repo /etc/yum.repos.d/mongo.repo >tmp/roboshop.log
+echo "\e[32m>>>>>>>>>>>>>>>> Download nodejs <<<<<<<<<<<<\e[om"
+curl -sL https://rpm.nodesource.com/setup_lts.x | bash >tmp/roboshop.log
+echo "\e[32m>>>>>>>>>>>>>>>> Install nodejs Repos <<<<<<<<<<<<\e[om"
+dnf install nodejs -y >tmp/roboshop.log
+echo "\e[32m>>>>>>>>>>>>>>>> Create Application user <<<<<<<<<<<<\e[om"
+useradd roboshop >tmp/roboshop.log
+echo "\e[32m>>>>>>>>>>>>>>>> Remove unwanted <<<<<<<<<<<<\e[om"
+rm -rf /app >tmp/roboshop.log
+echo "\e[32m>>>>>>>>>>>>>>>> Create Application directory <<<<<<<<<<<<\e[om"
+mkdir /app >tmp/roboshop.log
+echo "\e[32m>>>>>>>>>>>>>>>>> download Application directory <<<<<<<<<<<<\e[om"
+curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip >tmp/roboshop.log
+echo "\e[32>>>>>>>>>>>>>>>> Extract Application Content <<<<<<<<<<<<\e[om"
+cd /app >tmp/roboshop.log
+unzip /tmp/catalogue.zip >tmp/roboshop.log
+cd /app >tmp/roboshop.log
 
-echo ">>>>>>>>>>>>>>>> Download Nodejs dependency <<<<<<<<<<<<"
+echo "\e[32>>>>>>>>>>>>>>>> Download Nodejs dependency <<<<<<<<<<<<\e[om"
 
-npm install
-echo ">>>>>>>>>>>>>>>> Install Mongo Client <<<<<<<<<<<<"
-dnf install mongodb-org-shell -y
-echo ">>>>>>>>>>>>>>>> Load Catalogue Schema  <<<<<<<<<<<<"
-mongo --host mongodb.devopsb17.online </app/schema/catalogue.js
-echo ">>>>>>>>>>>>>>>> Start Catalogue Server <<<<<<<<<<<<"
-systemctl daemon-reload
+npm install >tmp/roboshop.log
+echo "\e[32>>>>>>>>>>>>>>>> Install Mongo Client <<<<<<<<<<<<\e[om"
+dnf install mongodb-org-shell -y >tmp/roboshop.log
+echo "\e[32>>>>>>>>>>>>>>>> Load Catalogue Schema  <<<<<<<<<<<<\e[om"
+mongo --host mongodb.devopsb17.online </app/schema/catalogue.js >tmp/roboshop.log
+echo "\e[32>>>>>>>>>>>>>>>> Start Catalogue Server <<<<<<<<<<<<\e[om"
+systemctl daemon-reload >tmp/roboshop.log
 
 
-systemctl enable catalogue
-systemctl restart catalogue
+systemctl enable catalogue >tmp/roboshop.log
+systemctl restart catalogue >tmp/roboshop.log
 
 
